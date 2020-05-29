@@ -1,0 +1,28 @@
+<?xml version="1.0"?> <launch>
+  <!-- 
+  NOTE: You'll need to bring up something that publishes sensor data (see
+  rosstage), something that publishes a map (see map_server), and something to
+  visualize a costmap (see nav_view), to see things work.
+
+  Also, on a real robot, you'd want to set the "use_sim_time" parameter to false, or just not set it.
+  -->
+  <param name="/use_sim_time" value="true"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find map_server)/test/kcity.yaml" />
+  
+  <!-- Publishes the voxel grid to rviz for display -->
+  <node pkg="costmap_2d" type="costmap_2d_markers" name="voxel_visualizer">
+    <remap from="voxel_grid" to="costmap/voxel_grid"/>
+  </node>
+
+  <!-- Run the costmap node -->
+  <node name="costmap_node" pkg="costmap_2d" type="costmap_2d_node" >
+ <rosparam file="$(find costmap_2d)/launch/costmap_common_params.yaml" command="load" ns="costmap" />
+ <rosparam file="$(find costmap_2d)/launch/local_costmap_params.yaml" command="load" ns="costmap" />
+ <rosparam file="$(find costmap_2d)/launch/global_costmap_params.yaml" command="load" ns="costmap" />
+  </node>
+
+ <node pkg="tf" name="static_tf0" type="static_transform_publisher" args="0.0 0.0 0.0 0.0 0.0 1.0 map base_link 100"/>
+ <node pkg="tf" name="static_tf1" type="static_transform_publisher" args="0.0 0.0 0.0 0.0 0.0 1.0 base_link laser 100"/>
+  <!-- x y z yaw pitch roll parent child -->
+
+</launch>
