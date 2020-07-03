@@ -23,6 +23,7 @@
 
  <node pkg="tf" name="static_tf0" type="static_transform_publisher" args="0.0 0.0 0.0 0.0 0.0 1.0 map base_link 100"/>
  <node pkg="tf" name="static_tf1" type="static_transform_publisher" args="0.0 0.0 0.0 0.0 0.0 1.0 base_link laser 100"/>
+
   <!-- x y z yaw pitch roll parent child -->
 
 </launch>
