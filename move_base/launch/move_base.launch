@@ -6,7 +6,7 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find costmap_2d)/launch/costmap_common_params.yaml" command="load" />
     <rosparam file="$(find costmap_2d)/launch/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find costmap_2d)/launch/global_costmap_params.yaml" command="load" />
+    <rosparam file="/home/kuuve/catkin_ws/src/map_files/global_cost.yaml" command="load" />
     <rosparam file="$(find move_base)/launch/move_base_params.yaml" command="load" />
     <remap from="odom" to="$(arg odom_topic)"/>
 
